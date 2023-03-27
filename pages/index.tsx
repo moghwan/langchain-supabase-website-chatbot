@@ -6,8 +6,11 @@ import { fetchEventSource } from '@microsoft/fetch-event-source';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import LoadingDots from '@/components/ui/LoadingDots';
+import { useRouter } from 'next/router'
 
 export default function Home() {
+  const router = useRouter()
+  const { countryCode } = router.query
   const [query, setQuery] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [messageState, setMessageState] = useState<{
@@ -71,6 +74,7 @@ export default function Home() {
         body: JSON.stringify({
           question,
           history,
+          countryCode: countryCode || 'us',
         }),
         signal: ctrl.signal,
         onmessage: (event) => {

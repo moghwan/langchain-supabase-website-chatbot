@@ -9,7 +9,9 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const { question, history } = req.body;
+  const { question, history, countryCode } = req.body;
+
+  // let country = countries.filter(function(c) { return c.code === countryCode; })[0]
 
   if (!question) {
     return res.status(400).json({ message: 'No question in the request' });

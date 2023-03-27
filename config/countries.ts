@@ -1,0 +1,15 @@
+export const countries = [
+    { code: 'ma', name: 'Morocco'},
+    { code: 'ca', name: 'Canada'},
+    { code: 'us', name: 'United States'},
+    { code: 'fr', name: 'France'},
+    { code: 'be', name: 'Belgium'},
+    { code: 'de', name: 'Deutschland'},
+    { code: 'nl', name: 'Netherlands'},
+    { code: 'uk', name: 'United Kingdom'},
+    { code: 'it', name: 'Italy'},
+    { code: 'es', name: 'Spain'},
+    { code: 'pl', name: 'Poland'},
+    { code: 'se', name: 'Sweden'},
+    { code: 'pt', name: 'Portugal'},
+]

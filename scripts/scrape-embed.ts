@@ -6,7 +6,7 @@ import { Embeddings, OpenAIEmbeddings } from 'langchain/embeddings';
 import { SupabaseVectorStore } from 'langchain/vectorstores';
 import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
 import { supabaseClient } from '@/utils/supabase-client';
-import { urlsMa } from '@/config/leyton-urls';
+import {urlsAll} from '@/config/leyton-urls';
 
 async function extractDataFromUrl(url: string): Promise<Document[]> {
   try {
@@ -57,9 +57,12 @@ async function splitDocsIntoChunks(docs: Document[]): Promise<Document[]> {
     const rawDocs = await extractDataFromUrls(urls);
     //split docs into chunks for openai context window
     const docs = await splitDocsIntoChunks(rawDocs);
+    // clear table to recreate all embeddings
+    // await supabaseClient.from('documents').delete();
+    // await supabaseClient.rpc('TRUNCATE TABLE documents');
     //embed docs into supabase
     await embedDocuments(supabaseClient, docs, new OpenAIEmbeddings());
   } catch (error) {
     console.log('error occured:', error);
   }
-})(urlsMa);
+})(urlsAll);
