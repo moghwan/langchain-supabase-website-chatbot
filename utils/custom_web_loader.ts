@@ -25,10 +25,12 @@ export class CustomWebLoader
 
   async load(): Promise<Document[]> {
     const $ = await this.scrape();
-    const title = [
-      $('h1.ori-inshgit_header-title').text(),
-      $('h1.ori-hero_section-title').text(),
-    ].join('\n\n')
+    const title = cusTrim([
+        $('h1.ori-inshgit_header-title').text(),
+        $('h1.ori-hero_section-title').text(),
+      ].join(DOUBLE_NEW_LINE)
+    , DOUBLE_NEW_LINE)
+
 
     const date = $('ul.ori-inshgit_meta-details li:first').text();
 
@@ -53,11 +55,11 @@ export class CustomWebLoader
       $('.blog-container').text(),
     ].join('\n\n')
 
-    const cleanedContent = content.replace(/\s+/g, ' ').trim();
+    const cleanedContent = cusTrim(content.replace(/\s+/g, ' ').trim(), DOUBLE_NEW_LINE);
 
     const contentLength = cleanedContent?.match(/\b\w+\b/g)?.length ?? 0;
 
-    const metadata = { source: this.webPath, title, date, contentLength };
+    const metadata = { source: this.webPath, title, date, contentLength, countryCode: this.webPath.split('/')[3]};
 
     return [new Document({ pageContent: cleanedContent, metadata })];
   }
@@ -75,4 +77,19 @@ export class CustomWebLoader
       );
     }
   }
+}
+
+const DOUBLE_NEW_LINE = '\n\n';
+
+function cusTrim(str, ch) {
+  var start = 0,
+      end = str.length;
+
+  while(start < end && str[start] === ch)
+    ++start;
+
+  while(end > start && str[end - 1] === ch)
+    --end;
+
+  return (start > 0 || end < str.length) ? str.substring(start, end) : str;
 }

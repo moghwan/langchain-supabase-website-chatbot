@@ -22,7 +22,10 @@ async function extractDataFromUrl(url: string): Promise<Document[]> {
 async function extractDataFromUrls(urls: string[]): Promise<Document[]> {
   console.log('extracting data from urls...');
   const documents: Document[] = [];
+  console.log(`there are ${urls.length} links to be fetched`)
+  let counter = 0;
   for (const url of urls) {
+    console.log(`fetching url ${++counter}/${urls.length}`)
     const docs = await extractDataFromUrl(url);
     documents.push(...docs);
   }
@@ -58,8 +61,8 @@ async function splitDocsIntoChunks(docs: Document[]): Promise<Document[]> {
     //split docs into chunks for openai context window
     const docs = await splitDocsIntoChunks(rawDocs);
     // clear table to recreate all embeddings
-    // await supabaseClient.from('documents').delete();
-    // await supabaseClient.rpc('TRUNCATE TABLE documents');
+    let errors = await supabaseClient.from('documents').delete().neq('id', 0);
+    // console.log(errors)
     //embed docs into supabase
     await embedDocuments(supabaseClient, docs, new OpenAIEmbeddings());
   } catch (error) {
