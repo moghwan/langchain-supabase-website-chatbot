@@ -223,6 +223,14 @@ export default function Home() {
               </div>
             </div>
           </main>
+          <div className={styles.logosContainer}>
+            <div className={[styles.logo, styles.logo1].join(' ')}>
+              <Image src="/Vector.png" alt="Orion" width="100" height="100"/>
+            </div>
+            <div className={[styles.logo, styles.logo2].join(' ')}>
+              <Image src="/Vector.png" alt="Orion" width="200" height="200"/>
+            </div>
+          </div>
         </div>
         <footer className="m-auto">
           {/*<a href="https://twitter.com/mayowaoshin">*/}

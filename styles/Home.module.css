@@ -191,12 +191,13 @@
 .cloud {
   width: 75vw;
   height: 65vh;
-  background: #ffffff;
+  background-color: #fff7;
   border-radius: 0.5rem;
   border: 1px solid #d9d9e3;
   display: flex;
   justify-content: center;
   align-items: center;
+  backdrop-filter: blur(15px);
 }
 
 .pointsnormal {
@@ -259,4 +260,36 @@
     width: 100%;
     text-align: center;
   }
+}
+
+.logo {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.logo1 {
+  top: 65%;
+  left: 15%;
+  animation: float 6s ease-in-out infinite;
+}
+.logo2 {
+  top: 20%;
+  left: 60%;
+  animation: float 9s ease-in-out infinite;
+}
+@keyframes float {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(20px, 20px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.logosContainer {
+  height: 80vh;
+  z-index: -1;
 }
