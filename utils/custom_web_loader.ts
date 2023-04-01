@@ -2,7 +2,7 @@ import type { CheerioAPI, load as LoadT } from 'cheerio';
 import { Document } from 'langchain/document';
 import { BaseDocumentLoader } from 'langchain/document_loaders';
 import type { DocumentLoader } from 'langchain/document_loaders';
-import { CheerioWebBaseLoader } from 'langchain/document_loaders';
+// import { CheerioWebBaseLoader } from 'langchain/document_loaders';
 
 export class CustomWebLoader
   extends BaseDocumentLoader
@@ -81,8 +81,8 @@ export class CustomWebLoader
 
 const DOUBLE_NEW_LINE = '\n\n';
 
-function cusTrim(str, ch) {
-  var start = 0,
+function cusTrim(str: string, ch: string) {
+  let start = 0,
       end = str.length;
 
   while(start < end && str[start] === ch)
