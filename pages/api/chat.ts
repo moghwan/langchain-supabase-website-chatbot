@@ -9,7 +9,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const { question, history, countryCode } = req.body;
+  const { question, history, countryCode, target } = req.body;
 
   // let country = countries.filter(function(c) { return c.code === countryCode; })[0]
 
@@ -18,11 +18,31 @@ export default async function handler(
   }
   // OpenAI recommends replacing newlines with spaces for best results
   const sanitizedQuestion = question.trim().replaceAll('\n', ' ');
+  
+  let tableName= '',
+      queryName= '';
+  
+  switch (target) {
+    case 'hr':
+      tableName = 'documents_hr'
+      queryName = 'match_documents_hr'
+      break;
+    default : // orion
+      tableName = 'documents'
+      queryName = 'match_documents'
+      break;
+  }
 
-  /* create vectorstore*/
-  const vectorStore = await SupabaseVectorStore.fromExistingIndex(
+  // console.log('tableName', tableName)
+  // console.log('queryName', queryName)
+
+  const vectorStore = await new SupabaseVectorStore(
     supabaseClient,
     new OpenAIEmbeddings(),
+    {
+      tableName: tableName,
+      queryName: queryName
+    }
   );
 
   res.writeHead(200, {
