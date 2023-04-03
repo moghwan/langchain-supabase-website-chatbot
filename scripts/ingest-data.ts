@@ -1,9 +1,8 @@
 import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
 import { OpenAIEmbeddings } from 'langchain/embeddings';
-import {PineconeStore, SupabaseVectorStore} from 'langchain/vectorstores';
+import {SupabaseVectorStore} from 'langchain/vectorstores';
 import { CustomPDFLoader } from '@/utils/customPDFLoader';
 import { DirectoryLoader } from 'langchain/document_loaders';
-import type { SupabaseClient } from '@supabase/supabase-js';
 import {supabaseClient} from "@/utils/supabase-client";
 import fs from "fs/promises";
 
@@ -38,7 +37,7 @@ export const run = async () => {
         console.log('creating vector store...');
 
         //embed the PDF documents
-        let errors = await supabaseClient.from('documents_hr').delete().neq('id', 0);
+        // let errors = await supabaseClient.from('documents_hr').delete().neq('id', 0);
         
         await new SupabaseVectorStore(
           supabaseClient,
