@@ -1,6 +1,6 @@
 import { OpenAI } from 'langchain/llms';
 import { LLMChain, ChatVectorDBQAChain, loadQAChain } from 'langchain/chains';
-import { HNSWLib, SupabaseVectorStore } from 'langchain/vectorstores';
+import { SupabaseVectorStore } from 'langchain/vectorstores';
 import { PromptTemplate } from 'langchain/prompts';
 
 const CONDENSE_PROMPT =
