@@ -10,7 +10,7 @@ import { useRouter } from 'next/router'
 
 export default function Home() {
   const router = useRouter()
-  const { countryCode } = router.query
+  const { countryCode = 'us', target = 'orion' } = router.query
   const [query, setQuery] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [messageState, setMessageState] = useState<{
@@ -64,9 +64,10 @@ export default function Home() {
     setMessageState((state) => ({ ...state, pending: '' }));
 
     const ctrl = new AbortController();
+    // console.log('target', target)
 
     try {
-      fetchEventSource('/api/chat', {
+      await fetchEventSource('/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -74,7 +75,8 @@ export default function Home() {
         body: JSON.stringify({
           question,
           history,
-          countryCode: countryCode || 'us',
+          countryCode: countryCode,
+          target: target,
         }),
         signal: ctrl.signal,
         onmessage: (event) => {
@@ -128,7 +130,7 @@ export default function Home() {
       <Layout>
         <div className="mx-auto flex flex-col gap-4">
           <h1 className="text-2xl font-bold leading-[1.1] tracking-tighter text-center">
-            LeytonGPT ChatBot
+            LeytonGPT - {target.toString().toUpperCase()} ChatBot
           </h1>
           <main className={styles.main}>
             <div className={styles.cloud}>
@@ -225,10 +227,10 @@ export default function Home() {
           </main>
           <div className={styles.logosContainer}>
             <div className={[styles.logo, styles.logo1].join(' ')}>
-              <Image src="/Vector.png" alt="Orion" width="100" height="100"/>
+              <Image src={`/Vector-${target}.png`} alt="Orion" width="100" height="100"/>
             </div>
             <div className={[styles.logo, styles.logo2].join(' ')}>
-              <Image src="/Vector.png" alt="Orion" width="200" height="200"/>
+              <Image src={`/Vector-${target}.png`} alt="Orion" width="200" height="200"/>
             </div>
           </div>
         </div>

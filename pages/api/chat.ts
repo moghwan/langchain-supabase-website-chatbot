@@ -19,8 +19,8 @@ export default async function handler(
   // OpenAI recommends replacing newlines with spaces for best results
   const sanitizedQuestion = question.trim().replaceAll('\n', ' ');
   
-  let tableName= '',
-      queryName= '';
+  let tableName: string,
+      queryName: string;
   
   switch (target) {
     case 'hr':
