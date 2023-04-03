@@ -36,7 +36,7 @@ export const makeChain = (
   });
   const docChain = loadQAChain(
     new OpenAI({
-      modelName: 'text-davinci-003',
+      modelName: 'gpt-3.5-turbo',
       temperature: 0.4,
       streaming: Boolean(onTokenStream),
       callbackManager: {
