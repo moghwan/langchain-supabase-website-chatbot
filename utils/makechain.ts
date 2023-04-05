@@ -55,10 +55,6 @@ export const makeChain = (
     { prompt: QA_PROMPT },
   );
 
-    // console.log('questionGenerator', questionGenerator)
-    // console.log('docChain', docChain)
-    // console.log('vectorstore', vectorstore)
-
   return new ChatVectorDBQAChain({
     vectorstore,
     combineDocumentsChain: docChain,

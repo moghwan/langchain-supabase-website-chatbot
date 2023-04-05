@@ -10,7 +10,7 @@ import { useRouter } from 'next/router'
 
 export default function Home() {
   const router = useRouter()
-  const { countryCode = 'us', target = 'orion' } = router.query
+  const { countryCode = 'us', target = 'website' } = router.query
   const [query, setQuery] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [messageState, setMessageState] = useState<{

@@ -27,14 +27,11 @@ export default async function handler(
       tableName = 'documents_hr'
       queryName = 'match_documents_hr'
       break;
-    default : // orion
+    default : // website
       tableName = 'documents'
       queryName = 'match_documents'
       break;
   }
-
-  // console.log('tableName', tableName)
-  // console.log('queryName', queryName)
 
   const vectorStore = await new SupabaseVectorStore(
     supabaseClient,
