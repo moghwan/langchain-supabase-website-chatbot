@@ -38,8 +38,8 @@ export const makeChain = (
 ) => {
   const questionGenerator = new LLMChain({
     llm: new OpenAI({
-        temperature: 0.4,
         modelName: modelNames['davinci'],
+        // temperature: 0.4,
     }),
     prompt: CONDENSE_PROMPT,
   });
