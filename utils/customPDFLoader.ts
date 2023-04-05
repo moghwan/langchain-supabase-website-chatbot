@@ -37,20 +37,18 @@ export class CustomPDFLoader extends BufferLoader {
         const parsed = await pdf(raw);
 
         // Remove non-printable and other non-valid JSON characters
-        let pageContent = parsed.text.replace(/[\u0000-\u0019]+/g,"");
-        // Preserve newlines, etc. - use valid JSON
-        pageContent = pageContent.replace(/\\n/g, "\\n")
-          .replace(/\\'/g, "\\'")
-          .replace(/\\"/g, '\\"')
-          .replace(/\\&/g, "\\&")
-          .replace(/\\r/g, "\\r")
-          .replace(/\\t/g, "\\t")
-          .replace(/\\b/g, "\\b")
-          .replace(/\\f/g, "\\f");
+        let pageContent = parsed.text
+          .replace(/[\u0000-\u0019]+/g,"")
+        // // Preserve newlines, etc. - use valid JSON
+        // // pageContent = pageContent.replace(/\\n/g, "\\n")
+        //   .replace(/\\'/g, "\\'")
+        //   .replace(/\\"/g, '\\"')
+        //   .replace(/\\&/g, "\\&")
+        //   .replace(/\\r/g, "\\r")
+        //   .replace(/\\t/g, "\\t")
+        //   .replace(/\\b/g, "\\b")
+        //   .replace(/\\f/g, "\\f");
         
-        // pageContent = JSON.parse(pageContent);
-        // pageContent = decodeURIComponent(JSON.parse('"' + pageContent.replace(/\"/g, '\\"') + '"'));
-
         return [
             new Document({
                 pageContent: pageContent,

@@ -28,8 +28,9 @@ export class CustomWebLoader
     const title = cusTrim([
         $('h1.ori-inshgit_header-title').text(),
         $('h1.ori-hero_section-title').text(),
-      ].join(DOUBLE_NEW_LINE)
-    , DOUBLE_NEW_LINE)
+        $('title').first().text(),
+      ].join(CONCAT_STR)
+    , CONCAT_STR)
 
 
     const date = $('ul.ori-inshgit_meta-details li:first').text();
@@ -53,9 +54,9 @@ export class CustomWebLoader
       $('#ori-location').text(),
       $('#ori-discover_industry_block').text(),
       $('.blog-container').text(),
-    ].join('\n\n')
+    ].join(CONCAT_STR)
 
-    const cleanedContent = cusTrim(content.replace(/\s+/g, ' ').trim(), DOUBLE_NEW_LINE);
+    const cleanedContent = cusTrim(content.replace(/\s+/g, ' ').trim(), CONCAT_STR);
 
     const contentLength = cleanedContent?.match(/\b\w+\b/g)?.length ?? 0;
 
@@ -79,7 +80,7 @@ export class CustomWebLoader
   }
 }
 
-const DOUBLE_NEW_LINE = '\n\n';
+const CONCAT_STR = '. ';
 
 function cusTrim(str: string, ch: string) {
   let start = 0,

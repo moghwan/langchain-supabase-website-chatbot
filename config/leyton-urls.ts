@@ -193,11 +193,9 @@ export const urlsAll = [
     'https://leyton.com/us/schedule-a-call/',
     'https://leyton.com/us/sailing/',
     'https://leyton.com/us/career/',
+    'https://leyton.com/ma/corporate-social-responsibility/',
     'https://leyton.com/ma/news/devops-training-organized-at-ensem/',
-    'https://leyton.com/ma/news/meetgreet-day-leyton-x-1337-2/',
-    'https://leyton.com/ma/news/leyton-participated-in-the-meet-greet-day-organized-by-um6p/',
     'https://leyton.com/ma/news/student-engineers-visit-leyton/',
-    'https://leyton.com/ma/news/new-office-opening-leyton-lands-in-portugal/',
     'https://leyton.com/ma/life-at-leyton/',
     'https://leyton.com/ma/tech-lab-2/',
     'https://leyton.com/ma/leyton-sailing-team/',
@@ -206,5 +204,4 @@ export const urlsAll = [
     'https://leyton.com/ma/our-expertise/',
     'https://leyton.com/ma/contact-us/',
     'https://leyton.com/ma/',
-    'https://leyton.com/ma/corporate-social-responsibility/',
 ]
