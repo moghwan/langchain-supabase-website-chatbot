@@ -10,7 +10,7 @@ create table documents (
 );
 
 -- Create a function to search for documents
-create function match_documents (
+create or replace function match_documents (
   query_embedding vector(1536),
   match_count int
 ) returns table (
@@ -30,6 +30,7 @@ begin
     metadata,
     1 - (documents.embedding <=> query_embedding) as similarity
   from documents
+  where match_count >= 0.8
   order by documents.embedding <=> query_embedding
   limit match_count;
 end;
@@ -50,7 +51,7 @@ create table documents_hr (
 );
 
 -- Create a function to search for documents_hr
-create function match_documents_hr (
+create or replace function match_documents_hr (
   query_embedding vector(1536),
   match_count int
 ) returns table (
@@ -70,6 +71,7 @@ begin
     metadata,
     1 - (documents_hr.embedding <=> query_embedding) as similarity
   from documents_hr
+  where match_count >= 0.8
   order by documents_hr.embedding <=> query_embedding
   limit match_count;
 end;
