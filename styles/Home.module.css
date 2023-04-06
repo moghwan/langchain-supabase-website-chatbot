@@ -444,3 +444,8 @@
 .widgetWrapper .boticon{
   margin-right: 10px;
 }
+
+.iframe {
+  height: 100vh;
+  width: 100%;
+}

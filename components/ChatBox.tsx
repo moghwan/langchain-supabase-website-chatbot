@@ -11,7 +11,7 @@ interface ChatboxProps {
   children?: React.ReactNode;
 }
 
-export default function Chatbox({ children }: ChatboxProps) {
+export default function ChatBox({ children }: ChatboxProps) {
   const router = useRouter()
   const { countryCode = 'us', target = 'website' } = router.query
   const [query, setQuery] = useState<string>('');

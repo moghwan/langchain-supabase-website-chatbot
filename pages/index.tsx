@@ -8,7 +8,7 @@ import ReactMarkdown from 'react-markdown';
 import LoadingDots from '@/components/ui/LoadingDots';
 import { useRouter } from 'next/router'
 
-import Chatbox from '@/components/chatBox';
+import ChatBox from '@/components/ChatBox';
 
 export default function Home() {
   const router = useRouter()
@@ -129,128 +129,9 @@ export default function Home() {
 
   return (
     <>
-      <Layout>
-        <div className="">
-          <h1 className="text-2xl font-bold leading-[1.1] tracking-tighter text-center">
-            LeytonGPT - {target.toString().toUpperCase()} ChatBot
-          </h1>
-          <main className={styles.main}>
-            <div className={styles.cloud}>
-              <div ref={messageListRef} className={styles.messagelist}>
-                {chatMessages.map((message, index) => {
-                  let icon;
-                  let messagrRow;
-                  let className;
-                  if (message.type === 'apiMessage') {
-                    icon = (
-                      <Image
-                        src="/orion.png"
-                        alt="AI"
-                        width="40"
-                        height="40"
-                        className={styles.boticon}
-                        priority
-                      />
-                    );
-                    messagrRow = styles.apimessageRow;
-                    className = styles.apimessage;
-                  } else {
-                    icon = (
-                      <Image
-                        src="/usericon.png"
-                        alt="Me"
-                        width="30"
-                        height="30"
-                        className={styles.usericon}
-                        priority
-                      />
-                    );
-                    messagrRow = styles.usermessageRow
-                    // The latest message sent by the user will be animated while waiting for a response
-                    className =
-                      loading && index === chatMessages.length - 1
-                        ? styles.usermessagewaiting
-                        : styles.usermessage;
-                  }
-                  return (
-                    <div key={index} className={messagrRow}>
-                      <div className={className}>
-                        {icon}
-                        <div className={styles.markdownanswer}>
-                          <ReactMarkdown linkTarget="_blank">
-                            {message.message}
-                          </ReactMarkdown>
-                        </div>
-                      </div>
-                      
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-            <div className={styles.center}>
-              <div className={styles.cloudform}>
-                <form onSubmit={handleSubmit}>
-                  <textarea
-                    disabled={loading}
-                    onKeyDown={handleEnter}
-                    ref={textAreaRef}
-                    autoFocus={false}
-                    rows={1}
-                    maxLength={512}
-                    id="userInput"
-                    name="userInput"
-                    placeholder={
-                      loading
-                        ? 'Waiting for response...'
-                        : 'Do you really have a sailing team?'
-                    }
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    className={styles.textarea}
-                  />
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className={styles.generatebutton}
-                  >
-                    {loading ? (
-                      <div className={styles.loadingwheel}>
-                        <LoadingDots color="#000" />
-                      </div>
-                    ) : (
-                      // Send icon SVG in input field
-                      <svg
-                        viewBox="0 0 20 20"
-                        className={styles.svgicon}
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
-                      </svg>
-                    )}
-                  </button>
-                </form>
-              </div>
-            </div>
-          </main>
-          {/* <div className={styles.logosContainer}>
-            <div className={[styles.logo, styles.logo1].join(' ')}>
-              <Image src={`/Vector-${target}.png`} alt="Orion" width="100" height="100"/>
-            </div>
-            <div className={[styles.logo, styles.logo2].join(' ')}>
-              <Image src={`/Vector-${target}.png`} alt="Orion" width="200" height="200"/>
-            </div>
-          </div> */}
-        </div>
-        <footer className="m-auto">
-          {/*<a href="https://twitter.com/mayowaoshin">*/}
-          {/*  Powered by LangChain. Demo built by Mayo (Twitter: @mayowaoshin).*/}
-          {/*</a>*/}
-        </footer>
-        
-      </Layout>
-      <Chatbox>
-      </Chatbox>
+      <iframe className={styles.iframe} src="https://leyton.com"></iframe>
+      <ChatBox>
+      </ChatBox>
     </>
   );
 }
