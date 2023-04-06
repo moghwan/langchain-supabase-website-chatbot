@@ -30,7 +30,7 @@ begin
     metadata,
     1 - (documents.embedding <=> query_embedding) as similarity
   from documents
-  where match_count >= 0.8
+  where similarity >= 0.8
   order by documents.embedding <=> query_embedding
   limit match_count;
 end;
@@ -71,7 +71,7 @@ begin
     metadata,
     1 - (documents_hr.embedding <=> query_embedding) as similarity
   from documents_hr
-  where match_count >= 0.8
+  where similarity >= 0.8
   order by documents_hr.embedding <=> query_embedding
   limit match_count;
 end;
