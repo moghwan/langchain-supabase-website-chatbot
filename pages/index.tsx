@@ -128,7 +128,7 @@ export default function Home() {
   return (
     <>
       <Layout>
-        <div className="mx-auto flex flex-col gap-4">
+        <div className="">
           <h1 className="text-2xl font-bold leading-[1.1] tracking-tighter text-center">
             LeytonGPT - {target.toString().toUpperCase()} ChatBot
           </h1>
@@ -137,6 +137,7 @@ export default function Home() {
               <div ref={messageListRef} className={styles.messagelist}>
                 {chatMessages.map((message, index) => {
                   let icon;
+                  let messagrRow;
                   let className;
                   if (message.type === 'apiMessage') {
                     icon = (
@@ -149,6 +150,7 @@ export default function Home() {
                         priority
                       />
                     );
+                    messagrRow = styles.apimessageRow;
                     className = styles.apimessage;
                   } else {
                     icon = (
@@ -161,6 +163,7 @@ export default function Home() {
                         priority
                       />
                     );
+                    messagrRow = styles.usermessageRow
                     // The latest message sent by the user will be animated while waiting for a response
                     className =
                       loading && index === chatMessages.length - 1
@@ -168,13 +171,16 @@ export default function Home() {
                         : styles.usermessage;
                   }
                   return (
-                    <div key={index} className={className}>
-                      {icon}
-                      <div className={styles.markdownanswer}>
-                        <ReactMarkdown linkTarget="_blank">
-                          {message.message}
-                        </ReactMarkdown>
+                    <div key={index} className={messagrRow}>
+                      <div className={className}>
+                        {icon}
+                        <div className={styles.markdownanswer}>
+                          <ReactMarkdown linkTarget="_blank">
+                            {message.message}
+                          </ReactMarkdown>
+                        </div>
                       </div>
+                      
                     </div>
                   );
                 })}
@@ -225,14 +231,14 @@ export default function Home() {
               </div>
             </div>
           </main>
-          <div className={styles.logosContainer}>
+          {/* <div className={styles.logosContainer}>
             <div className={[styles.logo, styles.logo1].join(' ')}>
               <Image src={`/Vector-${target}.png`} alt="Orion" width="100" height="100"/>
             </div>
             <div className={[styles.logo, styles.logo2].join(' ')}>
               <Image src={`/Vector-${target}.png`} alt="Orion" width="200" height="200"/>
             </div>
-          </div>
+          </div> */}
         </div>
         <footer className="m-auto">
           {/*<a href="https://twitter.com/mayowaoshin">*/}

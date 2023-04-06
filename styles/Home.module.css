@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem;
+  padding-top: 2rem;
 }
 
 .header {
@@ -15,31 +15,40 @@
 }
 
 .cloudform {
+  width: 100%;
   position: relative;
 }
 
 .textarea {
   position: relative;
   resize: none;
-  font-size: 1.1rem;
-  padding: 1rem 2rem 1rem 2rem;
-  width: 75vw;
-  border-radius: 0.5rem;
+  font-size: 13px;
+  padding: 15px;
+  /* padding: 1rem 2rem 1rem 2rem; */
+  width: 100%;
+  min-height: 70px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
   border: 1px solid #d9d9e3;
+  border-top: 0;
   background: #ffffff;
   color: #000;
   outline: none;
+}
+.textarea:focus{
+  outline: none;
+  box-shadow: none;
 }
 
 .textarea:disabled {
   opacity: 0.5;
 }
 
-.textarea:focus {
+/* .textarea:focus {
   outline: none;
   border-color: #6b7280;
   box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.5);
-}
+} */
 
 .textarea::placeholder {
   color: #6b7280;
@@ -85,30 +94,87 @@
   height: 100%;
   overflow-y: scroll;
   border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-right: 15px;
 }
+.messagelist::-webkit-scrollbar {
+    width: 5px;
+  }
+   
+  /* .preview-sample .preview_content::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  } */
+   
+  .messagelist::-webkit-scrollbar-thumb {
+    background-color: #012D48;
+    border-radius: 5px;
+    /* outline: 1px solid slategrey; */
+  }
 
 .messagelistloading {
   display: flex;
   width: 100%;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top: 1rem;;
+}
+.usermessageRow,
+.apimessageRow{
+  display: flex;
+}
+.usermessageRow{
+  justify-content: flex-end;
 }
 
-.usermessage {
-  background: #ffffffaa;
-  padding: 1.5rem;
-  color: #000;
+.apimessageRow{
+  justify-content: flex-start;
 }
+.usermessage {
+  /* background: #ffffffaa; */
+  display: flex;
+  color: #FFF;
+  flex-direction: row-reverse;
+  /* justify-content: flex-end; */
+}
+
+.apimessage {
+  /* background: #f9fafb66; */
+  
+  
+  /* animation: fadein 0.5s; */
+}
+
+.usermessage,
+.apimessage{
+  /* padding: 0.3rem; */
+  max-width: 80%;
+  width: 100%;
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 
 .usermessagewaiting {
-  padding: 1.5rem;
-  color: #000;
-  background: linear-gradient(to left, #07080938, #1a1c2024, #07080936);
-  background-size: 200% 200%;
+  /* padding: 1.5rem; */
+  color: #FFF;
+  display: flex;
+  /* color: #FFF; */
+  flex-direction: row-reverse;
+  /* background: #012D48; */
+  /* max-width: 80%;
+  width: 100%; */
+  /* background-size: 200% 200%;
   background-position: -100% 0;
   animation: loading-gradient 2s ease-in-out infinite;
   animation-direction: alternate;
-  animation-name: loading-gradient;
+  animation-name: loading-gradient; */
 }
 
 @keyframes loading-gradient {
@@ -120,30 +186,28 @@
   }
 }
 
-.apimessage {
-  background: #f9fafb66;
-  padding: 1.5rem;
-  color: #000;
-  animation: fadein 0.5s;
-}
-
-@keyframes fadein {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 .apimessage,
 .usermessage,
 .usermessagewaiting {
   display: flex;
+  align-items: center;
 }
 
 .markdownanswer {
-  line-height: 1.75;
+
+  border-radius: 4px;
+  overflow: hidden;
+  font-size: 13px;
+  padding: 10px;
+  /* line-height: 1.75; */
+}
+
+.apimessageRow .markdownanswer{
+  background-color: #FFF;
+}
+
+.usermessageRow .markdownanswer{
+  background-color: #012D48;
 }
 
 .markdownanswer a:hover {
@@ -167,10 +231,19 @@
 }
 
 .boticon,
-.usericon {
-  margin-right: 1rem;
+.usericon{
   border-radius: 0.1rem;
-  height: 100%;
+  height: 35px;
+  width: 35px;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 50%;
+}
+.boticon{
+  margin-right: 1rem;
+}
+.usericon {
+  margin-left: 1rem;
 }
 
 .markdownanswer h1,
@@ -184,20 +257,24 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  padding: 2rem 0;
+  /* padding: 2rem 0; */
   flex-direction: column;
+  width: 100%;
 }
 
 .cloud {
-  width: 75vw;
-  height: 65vh;
-  background-color: #fff7;
-  border-radius: 0.5rem;
+  width: 100%;
+  height: calc(85vh - 100px);
+  background-color: #F0F3F5;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
   border: 1px solid #d9d9e3;
   display: flex;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(15px);
+  padding: 15px;
+  margin: 0 auto;
+  /* backdrop-filter: blur(15px); */
 }
 
 .pointsnormal {
@@ -292,4 +369,7 @@
 .logosContainer {
   height: auto;
   z-index: -1;
+}
+.container{
+  margin: 0 auto;
 }
