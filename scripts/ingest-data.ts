@@ -36,9 +36,10 @@ export const run = async () => {
         /*create and store the embeddings in the vectorStore*/
         console.log('creating vector store...');
 
+        // truncate table before storing embeddings
+        let errors = await supabaseClient.from('documents_hr').delete().neq('id', 0);
+
         //embed the PDF documents
-        // let errors = await supabaseClient.from('documents_hr').delete().neq('id', 0);
-        
         await new SupabaseVectorStore(
           supabaseClient,
           new OpenAIEmbeddings(),

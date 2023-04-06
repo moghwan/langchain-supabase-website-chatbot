@@ -27,25 +27,21 @@ Question: {question}
 Answer in Markdown:`,
 );
 
-const modelNames = {
-    'davinci': 'text-davinci-003',
-    'turbo': 'gpt-3.5-turbo',
-}
-
 export const makeChain = (
   vectorstore: SupabaseVectorStore,
   onTokenStream?: (token: string) => void,
 ) => {
   const questionGenerator = new LLMChain({
+
     llm: new OpenAI({
-        modelName: modelNames['davinci'],
-        // temperature: 0.4,
+        // modelName: 'text-davinci-003',
+        temperature: 0.4,
     }),
     prompt: CONDENSE_PROMPT,
   });
   const docChain = loadQAChain(
     new OpenAI({
-      modelName: modelNames['davinci'],
+      modelName: 'text-davinci-003',
       temperature: 0.4,
       streaming: Boolean(onTokenStream),
       callbackManager: {
