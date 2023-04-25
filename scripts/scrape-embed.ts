@@ -50,6 +50,7 @@ async function splitDocsIntoChunks(docs: Document[]): Promise<Document[]> {
   const textSplitter = new RecursiveCharacterTextSplitter({
     chunkSize: 2000,
     chunkOverlap: 200,
+    separators: ['\n\n']
   });
   return await textSplitter.splitDocuments(docs);
 }

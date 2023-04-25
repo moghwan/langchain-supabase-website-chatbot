@@ -58,7 +58,7 @@ export class CustomWebLoader
 
     const cleanedContent = cusTrim(content.replace(/\s+/g, ' ').trim(), CONCAT_STR);
 
-    const contentLength = cleanedContent?.match(/\b\w+\b/g)?.length ?? 0;
+    const contentLength = content?.match(/\b\w+\b/g)?.length ?? 0;
 
     const metadata = { source: this.webPath, title, date, contentLength, countryCode: this.webPath.split('/')[3]};
 
@@ -80,7 +80,7 @@ export class CustomWebLoader
   }
 }
 
-const CONCAT_STR = '. ';
+const CONCAT_STR = '\n\n';
 
 function cusTrim(str: string, ch: string) {
   let start = 0,

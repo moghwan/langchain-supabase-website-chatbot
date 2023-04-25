@@ -42,8 +42,8 @@ export default async function handler(
     }
   );
 
-  console.log('queryName', queryName)
-  console.log('tableName', tableName)
+  // console.log('queryName', queryName)
+  // console.log('tableName', tableName)
   res.writeHead(200, {
     'Content-Type': 'text/event-stream',
     'Cache-Control': 'no-cache, no-transform',
@@ -69,7 +69,13 @@ export default async function handler(
       chat_history: history || [],
     });
 
-    console.log('response', response);
+    // console.log('----------------------------------------------')
+    // console.log('sanitizedQuestion', sanitizedQuestion);
+    // console.log('----------------------------------------------')
+    // console.log('history', history);
+    // console.log('----------------------------------------------')
+    // console.log('response', response);
+    // console.log('----------------------------------------------')
   } catch (error) {
     console.log('error', error);
   } finally {
